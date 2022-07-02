@@ -9,6 +9,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Deklarasi
+        //Listview
         var dataNamaKoordinat = arrayOf("Roma", "Bali", "Toraja", "Rusia", "Arab Saudi","Bengkulu", "Amerika Serikat", "Danau Toba", "China", "Turki")
         var dataKoordinat = arrayOf(
             "-3.8958674397239164, 102.27939432259899",
@@ -39,27 +40,16 @@ class MainActivity : AppCompatActivity() {
             "62.80644954491442, 93.4268471229949",
             "36.688622511141425, 139.4815332488359",
         )
-
-        //Listview
-        var list = mutableListOf<list>()
+        var daftar = mutableListOf<list>()
         for (i in dataKoordinat.indices){
-            list.add(list(dataNamaKoordinat[i], dataKoordinat[i]))
+            daftar.add(list(dataNamaKoordinat[i], dataKoordinat[i]))
         }
-//        val arrayAdapter: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_list_item_single_choice, dataKoordinat)
-        binding.listview.adapter = listAdapter(this, R.layout.list_item, list)
-        var itemNama= ""
-        var itemKoordinat= ""
-        for(i in binding.listview.indices){
-            if(binding.listview.isItemChecked(i)){
-                itemKoordinat += binding.listview.getItemAtPosition(i)
-            }
+        binding.listview.adapter = listAdapter(this, R.layout.list_item, daftar)
+        binding.listview.isClickable = true
+        binding.listview.setOnItemClickListener { parent, view, position, id ->
+            binding.ETinputNama.setText(dataNamaKoordinat[position],TextView.BufferType.EDITABLE)
+            binding.ETinputCo.setText(dataKoordinat[position],TextView.BufferType.EDITABLE)
         }
-
-//        binding.listview.setOnClickListener {
-//            for(i in dataKoordinat.indices){
-//                binding.ETinputCo.setText(dataKoordinat[i],TextView.BufferType.EDITABLE)
-//            }
-//        }
 
         //Save
         binding.save
@@ -77,11 +67,6 @@ class MainActivity : AppCompatActivity() {
         binding.help.setOnClickListener{
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://support.google.com/maps/answer/18539?hl=id&co=GENIE.Platform%3DAndroid")))
         }
-
-        //Input
-        binding.ETinputNama.requestFocus()
-        binding.ETinputCo.setText("",TextView.BufferType.EDITABLE)
-        //jika di clik list viewnya, akan masuk ke ETInput
 
         //RealmRealm.init(this)
 //        val config = RealmConfiguration.Builder()
