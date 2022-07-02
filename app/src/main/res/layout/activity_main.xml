@@ -19,20 +19,40 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/ETLayout"
+        android:id="@+id/ETLayoutNama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="48dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="55dp"
         android:layout_marginRight="48dp"
-        android:hint="Masukkan Koordinat"
+        android:hint="Masukkan Nama Lokasi"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ETinput"
+            android:id="@+id/ETinputNama"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ETLayoutCo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="48dp"
+        android:hint="Masukkan Koordinat"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ETLayoutNama">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ETinputCo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="numberDecimal" />
@@ -43,12 +63,26 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="47dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="3dp"
+        android:backgroundTint="@color/green"
+        android:text="Save"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/gps"
+        app:layout_constraintTop_toBottomOf="@id/ETLayoutCo" />
+
+    <Button
+        android:id="@+id/gps"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
         android:layout_marginRight="47dp"
         android:layout_marginTop="10dp"
-        android:text="Save"
-        app:layout_constraintTop_toBottomOf="@id/ETLayout"
+        android:backgroundTint="@color/blue"
+        android:text="GPS"
+        app:layout_constraintTop_toBottomOf="@id/ETLayoutCo"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toRightOf="@id/save"/>
 
     <ListView
         android:id="@+id/listview"
@@ -68,9 +102,10 @@
         android:id="@+id/copy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue"
         android:text="Copy"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginRight="47dp"
+        android:layout_marginLeft="3dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -80,9 +115,10 @@
         android:id="@+id/delete"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
         android:text="Delete"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="47dp"
+        android:layout_marginRight="3dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

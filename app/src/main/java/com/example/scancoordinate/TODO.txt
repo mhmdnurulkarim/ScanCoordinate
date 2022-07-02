@@ -1,0 +1,14 @@
+TODO #Selesai
+TODO: Buat tombol Help diatas pojok
+TODO: Buat Copy untuk masukkan data koordinat ke clipboard
+TODO: Buat ETxtInput nama lokasi dan koordinat
+TODO: Buat lisview dapat menampilkan Nama lokasi dan koordinatnya
+
+
+TODO &Perbaiki
+TODO: Buat listview dapat di klik dan dapat masuk data ke EDTxt
+
+
+TODO !!Kerjakan
+TODO: Buat database dari realm
+TODO: Buat button save dan delete berfungsi seperti CRUD
