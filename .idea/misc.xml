@@ -5,8 +5,9 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_help.xml" value="0.183" />
         <entry key="app/src/main/res/layout/activity_help.xml" value="0.1693840579710145" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/list_item.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/input_dialog.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/listview.xml" value="0.1693840579710145" />
       </map>
     </option>

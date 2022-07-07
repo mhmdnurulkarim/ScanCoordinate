@@ -1,14 +1,14 @@
 TODO #Selesai
 TODO: Buat tombol Help diatas pojok
-TODO: Buat Copy untuk masukkan data koordinat ke clipboard
 TODO: Buat ETxtInput nama lokasi dan koordinat
-TODO: Buat lisview dapat menampilkan Nama lokasi dan koordinatnya
-TODO: Buat listview dapat di klik dan dapat masuk data ke EDTxt
+TODO: Buat Copy untuk masukkan data koordinat ke clipboard
+TODO: Inisialisasi database realm
 
 
 TODO &Perbaiki
+TODO: Buat ListView dapat menampilkan Nama lokasi dan koordinatnya
 
 
 TODO !!Kerjakan
-TODO: Buat database dari realm
-TODO: Buat button save dan delete berfungsi sebagaimana CRUD semestinya
+TODO: Buat ListVIew dapat di klik dan dapat membuat cardview update, copy, dan delete
+TODO: Buat button save, update dan delete berfungsi sebagaimana CRUD semestinya
