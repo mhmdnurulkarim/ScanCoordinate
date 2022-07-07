@@ -1,27 +1,31 @@
 package com.example.scancoordinate
 
+import android.app.Dialog
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import com.example.scancoordinate.databinding.ActivityMainBinding
 import com.example.scancoordinate.databinding.InputDialogBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.Task
 import io.realm.Realm
-import io.realm.RealmConfiguration
-import io.realm.RealmResults
 import io.realm.exceptions.RealmException
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var binding2: InputDialogBinding
     lateinit var realm: Realm
+    lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 //    lateinit var Models: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initRealm()
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
 //        val helper = Helper()
 //        Models = helper.retrieve()!!
@@ -49,36 +54,50 @@ class MainActivity : AppCompatActivity() {
             "62.80644954491442, 93.4268471229949",
             "36.688622511141425, 139.4815332488359",
         )
-        var daftar = mutableListOf<list>()
+        var listItem = mutableListOf<list>()
         for (i in dataKoordinat.indices){
-            daftar.add(list(dataNamaKoordinat[i], dataKoordinat[i]))
+            listItem.add(list(dataNamaKoordinat[i], dataKoordinat[i]))
         }
-        binding.lvKoordinat.adapter = listAdapter(this, R.layout.list_item, daftar)
+        binding.lvKoordinat.adapter = listAdapter(this, R.layout.list_item, listItem)
         binding.lvKoordinat.isClickable = true
+
+        val alertDialog = AlertDialog.Builder(this)
+        val view = layoutInflater.inflate(R.layout.input_dialog, null)
+        alertDialog.setCancelable(true)
+        alertDialog.setView(view)
+        val alertDialogView = alertDialog.create()
+
         binding.lvKoordinat.setOnItemClickListener { parent, view, position, id ->
-            val alertDialog = AlertDialog.Builder(this)
-            val view = layoutInflater.inflate(R.layout.input_dialog, null)
-            alertDialog.setView(view)
-            val alertDialogView = alertDialog.show()
-            binding2.RealmId.setText(dataNamaKoordinat[position]+1)
-            binding2.ETinputNama.setText(dataNamaKoordinat[position],TextView.BufferType.EDITABLE)
-            binding2.ETinputCo.setText(dataKoordinat[position],TextView.BufferType.EDITABLE)
+            alertDialogView.show()
 
-            //Delete
-            binding2.delete.setOnClickListener{
-                alertDialogView.dismiss()
-            }
+            //Tidak bisa berjalan, masalahnya terdapat pada binding2
+//            binding2.RealmId.setText(dataNamaKoordinat[position]+1)
+//            binding2.ETinputNama.setText(dataNamaKoordinat[position],TextView.BufferType.EDITABLE)
+//            binding2.ETinputCo.setText(dataKoordinat[position],TextView.BufferType.EDITABLE)
 
-            //Copy
-            binding2.copy.setOnClickListener{
-                copyCoordinate()
-                alertDialogView.dismiss()
-            }
+////            Delete
+//            binding2.delete.setOnClickListener{
+//                alertDialogView.dismiss()
+//            }
+//
+////            Copy
+//            binding2.copy.setOnClickListener{
+//                val clipboardManager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+//                val clipCoordinat = ClipData.newPlainText("Coordinate", binding2.ETinputCo.text)
+//                clipboardManager.setPrimaryClip(clipCoordinat)
+//
+//                Toast.makeText(this, "Koordinat telah dicopy", Toast.LENGTH_SHORT).show()
+//                alertDialogView.dismiss()
+//            }
+//
+////            Update
+//            binding2.update.setOnClickListener{
+//                alertDialogView.dismiss()
+//            }
+        }
 
-            //Update
-            binding2.update.setOnClickListener{
-                alertDialogView.dismiss()
-            }
+        binding.gps.setOnClickListener{
+            checkLocationPermission()
         }
 
         //Save
@@ -116,16 +135,23 @@ class MainActivity : AppCompatActivity() {
         realm = Realm.getDefaultInstance()
     }
 
-    private fun copyCoordinate() {
-        val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val clipCoordinat = ClipData.newPlainText("Coordinate", binding2.ETinputCo.text)
-        clipboardManager.setPrimaryClip(clipCoordinat)
-
-        Toast.makeText(this, "Koordinat telah dicopy", Toast.LENGTH_SHORT).show()
-    }
-
     fun getAllUser(){
         realm.where(Model::class.java).findAll().let {
+        }
+    }
+
+    private fun checkLocationPermission() {
+        val task = fusedLocationProviderClient.lastLocation
+        if(ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED && ActivityCompat
+                .checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+        ){
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
+        }
+        task.addOnSuccessListener {
+            if (it != null){
+                binding.ETinputCo.setText("${it.latitude}, ${it.longitude}", TextView.BufferType.EDITABLE)
+            }
         }
     }
 }

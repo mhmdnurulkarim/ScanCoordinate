@@ -3,10 +3,11 @@ TODO: Buat tombol Help diatas pojok
 TODO: Buat ETxtInput nama lokasi dan koordinat
 TODO: Buat Copy untuk masukkan data koordinat ke clipboard
 TODO: Inisialisasi database realm
+TODO: Buat mendeteksi lokasi realtime menggunakan gps
 
 
 TODO &Perbaiki
-TODO: Buat ListView dapat menampilkan Nama lokasi dan koordinatnya
+TODO: Buat ListView dapat menampilkan Nama lokasi dan koordinatnya dengan data yg ada di realm
 
 
 TODO !!Kerjakan

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/RealmId"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="3dp"
+        android:paddingTop="10dp"
+        android:paddingLeft="4dp"
+        android:textSize="16sp"
+        android:text="Number"
+        android:textColor="@color/black"/>
+    <EditText
+        android:id="@+id/ETinputNama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Roma"/>
+    <EditText
+        android:id="@+id/ETinputCo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="-3.8958674397239164, 102.27939432259899"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="2dp">
+        <Button
+            android:id="@+id/update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green"
+            android:text="update"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/copy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue"
+            android:text="copy"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/red"
+            android:text="Delete"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</LinearLayout>
